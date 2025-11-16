@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waterlife - Premium Bathroom & CP Fittings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b1b 50%, #1a1a1a 100%);
+        }
+
+        .red-gradient {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .carousel-item {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.3);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #dc2626;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(220,38,38,0.3)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23111" width="1200" height="800"/><circle cx="200" cy="200" r="100" fill="%23dc2626" opacity="0.1"/><circle cx="800" cy="400" r="150" fill="%23dc2626" opacity="0.05"/><circle cx="1000" cy="600" r="80" fill="%23dc2626" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-red-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img class="" src="E:\Screenshot 2025-11-01 231756.png" alt="" width="100px">
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#" class="nav-link active text-white hover:text-red-400">Home</a>
+                        <a href="D:\Waterlife Webiste\Waterlife website\products.html" class="nav-link text-gray-300 hover:text-red-400">Products</a>
+                        <a href="D:\Waterlife Webiste\Waterlife website\gallery.html" class="nav-link text-gray-300 hover:text-red-400">Gallery</a>
+                        <a href="D:\Waterlife Webiste\Waterlife website\about.html" class="nav-link text-gray-300 hover:text-red-400">About</a>
+                        <a href="D:\Waterlife Webiste\Waterlife website\contact.html" class="nav-link text-gray-300 hover:text-red-400">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-black/95">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 text-white hover:text-red-400">Home</a>
+                <a href="D:\Waterlife Webiste\Waterlife website\products.html" class="block px-3 py-2 text-gray-300 hover:text-red-400">Products</a>
+                <a href="D:\Waterlife Webiste\Waterlife website\gallery.html" class="block px-3 py-2 text-gray-300 hover:text-red-400">Gallery</a>
+                <a href="D:\Waterlife Webiste\Waterlife website\about.html" class="block px-3 py-2 text-gray-300 hover:text-red-400">About</a>
+                <a href="D:\Waterlife Webiste\Waterlife website\contact.html" class="block px-3 py-2 text-gray-300 hover:text-red-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg h-full flex items-center justify-center text-center pt-16">
+        <div class="max-w-4xl mx-auto px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in">
+                Premium <span class="text-red-500">Bathroom</span> Solutions
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 fade-in">
+                Transform your space with our luxury CP fittings and modern bathroom accessories
+            </p>
+            <div class="space-x-4 fade-in">
+                <a href="D:\Waterlife Webiste\Waterlife website\products.html"><button  class="red-gradient px-8 py-4 rounded-lg text-white font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300">
+                    Explore Products
+                </button> </a>
+                <a href="D:\Waterlife Webiste\Waterlife website\gallery.html"><button class="border-2 border-red-500 px-8 py-4 rounded-lg text-white font-semibold hover:bg-red-500 transition-all duration-300">
+                    View Gallery
+                </button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Carousel -->
+    <section class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Featured <span class="text-red-500">Products</span></h2>
+            <div class="relative">
+                <div id="carousel" class="overflow-hidden rounded-xl">
+                    <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
+                        <div class="carousel-item w-full flex-shrink-0"> 
+                            <div class="grid md:grid-cols-3 gap-8">
+                                <div class="product-card bg-gray-900 rounded-xl p-6 border border-red-900/30">
+                                <div><img class="rounded-lg h-64 w-full" src="C:\Users\daael\OneDrive\Pictures\Screenshots\Screenshot 2025-11-11 210444.png" alt="">
+                                    <h3 class="text-xl font-semibold mb-2"><span class="text-red-500">Florentine</span> Center Hole Basin Mixer</h3>
+                                    <p class="text-gray-400 mb-4">High-quality brass faucets with modern design</p>
+                                        </div>
+                                </div>
+                                <div class="product-card bg-gray-900 rounded-xl p-6 border border-red-900/30">
+                                    <div> <img class="rounded-lg h-64 w-full" src="C:\Users\daael\OneDrive\Pictures\Screenshots\Screenshot 2025-11-11 214323.png" alt="">
+                                    <h3 class="text-xl font-semibold mb-2"><span class="text-red-500">Aria</span> Single Lever Basin Mixer</h3>
+                                    <p class="text-gray-400 mb-4">Complete shower solutions with rainfall heads</p>
+                                    
+                                </div>
+                                </div>
+                                <div class="product-card bg-gray-900 rounded-xl p-6 border border-red-900/30">
+                                    <div> <img class="rounded-lg h-64 w-full" src="C:\Users\daael\OneDrive\Pictures\Screenshots\Screenshot 2025-11-16 145132.png" alt="">
+                                    <h3 class="text-xl font-semibold mb-2"><span class="text-red-500">Fusion</span> Center Hole Basin Mixer</h3>
+                                    <p class="text-gray-400 mb-4">Premium bathroom accessories and fittings</p>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item w-full flex-shrink-0">
+                            <div class="grid md:grid-cols-3 gap-8">
+                                <div class="product-card bg-gray-900 rounded-xl p-6 border border-red-900/30">
+                                    <div><img class="rounded-lg h-64 w-full" src="C:\Users\daael\OneDrive\Pictures\Screenshots\Screenshot 2025-11-16 145435.png" alt="">
+                                        <h3 class="text-xl font-semibold mb-2"><span class="text-red-500">Karbon</span> Long Pillar Cock</h3>
+                                    <p class="text-gray-400 mb-4">Elegant basin mixers with ceramic cartridge</p>
+                                   </div>
+                                </div>
+                                <div class="product-card bg-gray-900 rounded-xl p-6 border border-red-900/30">
+                                   <div><img class="rounded-lg h-64 w-full" src="C:\Users\daael\OneDrive\Pictures\Screenshots\Screenshot 2025-11-16 151511.png" alt="">
+                                    <h3 class="text-xl font-semibold mb-2"><span class="text-red-500">Society</span> Centre Hole Basin Mixer</h3>
+                                    <p class="text-gray-400 mb-4">IoT enabled smart bathroom solutions</p>
+                                    </div>
+                                </div>
+                                <div class="product-card bg-gray-900 rounded-xl p-6 border border-red-900/30">
+                                    <div><img class="rounded-lg h-64 w-full" src="C:\Users\daael\OneDrive\Pictures\Screenshots\Screenshot 2025-11-16 151224.png" alt="">
+                                    <h3 class="text-xl font-semibold mb-2"><span class="text-red-500">Ornamax</span> Long Pillar Cock</h3>
+                                    <p class="text-gray-400 mb-4">Heated towel rails with premium finish</p>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="prevSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Why Choose <span class="text-red-500">Waterlife</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-8 bg-gray-900 rounded-xl border border-red-900/30 hover:border-red-500/50 transition-colors">
+                    <div class="w-16 h-16 red-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Premium Quality</h3>
+                    <p class="text-gray-400">High-grade materials and superior craftsmanship in every product</p>
+                </div>
+                <div class="text-center p-8 bg-gray-900 rounded-xl border border-red-900/30 hover:border-red-500/50 transition-colors">
+                    <div class="w-16 h-16 red-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Smart Technology</h3>
+                    <p class="text-gray-400">IoT-enabled products for modern smart home integration</p>
+                </div>
+                <div class="text-center p-8 bg-gray-900 rounded-xl border border-red-900/30 hover:border-red-500/50 transition-colors">
+                    <div class="w-16 h-16 red-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Lifetime Warranty</h3>
+                    <p class="text-gray-400">Comprehensive warranty and after-sales support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-red-900/30 py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold text-red-500 mb-4">Waterlife</div>
+                    <p class="text-gray-400 mb-4">Premium bathroom solutions for modern homes. Quality, innovation, and style in every product.</p>
+                    <div class="flex left mb-12"><a href="#" class="w-8 h-8 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+    <svg class="w-4 h-4 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+    </svg></a>
+  </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Products</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\products.html" class="hover:text-red-400 transition-colors">Faucets</a></li>
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\products.html" class="hover:text-red-400 transition-colors">Shower Systems</a></li>
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\products.html" class="hover:text-red-400 transition-colors">Accessories</a></li>
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\products.html" class="hover:text-red-400 transition-colors">Smart Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\about.html" class="hover:text-red-400 transition-colors">About Us</a></li>
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\about.html" class="hover:text-red-400 transition-colors">Careers</a></li>
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\about.html" class="hover:text-red-400 transition-colors">Press</a></li>
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\about.html" class="hover:text-red-400 transition-colors">Partners</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\contact.html" class="hover:text-red-400 transition-colors">Help Center</a></li>
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\contact.html" class="hover:text-red-400 transition-colors">Installation</a></li>
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\contact.html" class="hover:text-red-400 transition-colors">Warranty</a></li>
+                        <li><a href="D:\Waterlife Webiste\Waterlife website\contact.html" class="hover:text-red-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Waterlife. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Carousel Functionality
+        let currentSlide = 0;
+        const totalSlides = 2;
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carousel-track');
+            if (track) {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+
+        // Smooth scrolling and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation classes to elements as they come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements that should animate
+            document.querySelectorAll('.product-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = event.target.closest('button');
+            
+            if (mobileMenu && !mobileMenu.contains(event.target) && !menuButton) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e848ab658e8ae1',t:'MTc2MDQ1NzU2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
