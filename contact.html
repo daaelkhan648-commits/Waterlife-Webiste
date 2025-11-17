@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Waterlife</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b1b 50%, #1a1a1a 100%);
+        }
+
+        .red-gradient {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+
+        .slide-in {
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #dc2626;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(31, 41, 55, 0.8);
+            border: 2px solid rgba(75, 85, 99, 0.5);
+            border-radius: 0.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .form-label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            color: #9ca3af;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            top: -0.5rem;
+            left: 0.75rem;
+            font-size: 0.75rem;
+            color: #dc2626;
+            background: #1f2937;
+            padding: 0 0.5rem;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid #22c55e;
+            color: #22c55e;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+        }
+
+        .faq-question {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #dc2626;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(45deg, #374151, #4b5563);
+            border: 2px dashed #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-red-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img class="" src="/Waterlife website/images/logo.png" alt="" width="100px">
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="./index.html" class="nav-link text-gray-300 hover:text-red-400">Home</a>
+                        <a href="./products.html" class="nav-link text-gray-300 hover:text-red-400">Products</a>
+                        <a href="./gallery.html" class="nav-link text-gray-300 hover:text-red-400">Gallery</a>
+                        <a href="./about.html" class="nav-link text-gray-300 hover:text-red-400">About</a>
+                        <a href="#" class="nav-link active text-white hover:text-red-400">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-black/95">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="./index.html" class="block px-3 py-2 text-gray-300 hover:text-red-400">Home</a>
+                <a href="./products.html" class="block px-3 py-2 text-gray-300 hover:text-red-400">Products</a>
+                <a href="./gallery.html" class="block px-3 py-2 text-gray-300 hover:text-red-400">Gallery</a>
+                <a href="./about.html" class="block px-3 py-2 text-gray-300 hover:text-red-400">About</a>
+                <a href="#" class="block px-3 py-2 text-white hover:text-red-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-20 gradient-bg pt-24">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 slide-in">Get in <span class="text-red-500">Touch</span></h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto fade-in">Ready to transform your bathroom? Our expert team is here to help you find the perfect solutions for your space.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">How Can We <span class="text-red-500">Help</span>?</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="contact-card bg-gray-800 rounded-xl p-6 text-center border border-red-900/30">
+                    <div class="w-16 h-16 red-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Call Us</h3>
+                    <p class="text-gray-300 mb-4">Speak directly with our experts</p>
+                    <p class="text-red-500 font-semibold">+91 98715 20140</p>
+                    <p class="text-sm text-gray-400 mt-2">Mon-Fri: 9AM-6PM</p>
+                </div>
+                
+                <div class="contact-card bg-gray-800 rounded-xl p-6 text-center border border-red-900/30">
+                    <div class="w-16 h-16 red-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Email Us</h3>
+                    <p class="text-gray-300 mb-4">Send us your questions</p>
+                    <p class="text-red-500 font-semibold">waterlifecustomercare@gmail.com</p>
+                    <p class="text-sm text-gray-400 mt-2">24/7 Response</p>
+                </div>
+                
+                <div class="contact-card bg-gray-800 rounded-xl p-6 text-center border border-red-900/30">
+                    <div class="w-16 h-16 red-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Live Chat</h3>
+                    <p class="text-gray-300 mb-4">Instant support online</p>
+                    <a href=" https://wa.me/message/GTCTXOOHS2XDD1"><button class="text-red-500 font-semibold hover:text-red-400 transition-colors">Start Chat</button></a>
+                    <p class="text-sm text-gray-400 mt-2">Available Now</p>
+                </div>
+                
+                <div class="contact-card bg-gray-800 rounded-xl p-6 text-center border border-red-900/30">
+                    <div class="w-16 h-16 red-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Visit Us</h3>
+                    <p class="text-gray-300 mb-4">See products in person</p>
+                    <p class="text-red-500 font-semibold">Book Appointment</p>
+                    <p class="text-sm text-gray-400 mt-2">3 Locations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Info -->
+    <section class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="fade-in">
+                    <h2 class="text-3xl font-bold mb-8">Send Us a <span class="text-red-500">Message</span></h2>
+                    
+                    <div id="success-message" class="success-message">
+                        <p>Thank you for your message! We'll get back to you within 24 hours.</p>
+                    </div>
+                    
+                    <form action="https://formspree.io/f/xjkjzlwr" method="post" id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder=" " required>
+                                <label for="firstName" class="form-label">First Name</label>
+                                <div class="error-message" id="firstName-error">Please enter your first name</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder=" " required>
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <div class="error-message" id="lastName-error">Please enter your last name</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" class="form-input" placeholder=" " required>
+                            <label for="email" class="form-label">Email Address</label>
+                            <div class="error-message" id="email-error">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder=" ">
+                            <label for="phone" class="form-label">Phone Number (Optional)</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="subject" name="subject" class="form-input" required>
+                                <option value="">Select Subject</option>
+                                <option value="product-inquiry">Product Inquiry</option>
+                                <option value="installation">Installation Support</option>
+                                <option value="warranty">Warranty Claim</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="error-message" id="subject-error">Please select a subject</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" class="form-input" placeholder=" " required></textarea>
+                            <label for="message" class="form-label">Your Message</label>
+                            <div class="error-message" id="message-error">Please enter your message</div>
+                        </div>
+                        
+                        
+                        
+                        <button type="submit" class="w-full red-gradient py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="scale-in">
+                    <h2 class="text-3xl font-bold mb-8">Our <span class="text-red-500">Locations</span></h2>
+                    
+                    <div class="space-y-8">
+                        <!-- Headquarters -->
+                        <div class="bg-gray-900 rounded-xl p-6 border border-red-900/30">
+                            <h3 class="text-xl font-bold mb-4 text-red-500">Main Office</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <svg class="w-5 h-5 text-red-500 mt-1 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    <div>
+                                        <p class="text-white">B-5/287, Yamuna Vihar</p>
+                                        <p class="text-gray-300">Delhi, India 110053</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 text-red-500 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                    </svg>
+                                    <p class="text-gray-300">+91 98715 20140</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 text-red-500 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    <div>
+                                        <p class="text-gray-300">Mon-Fri: 9:00 AM - 6:00 PM</p>
+                                        <p class="text-gray-300">Sat: 10:00 AM - 4:00 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Showroom 1 -->
+                        <div class="bg-gray-900 rounded-xl p-6 border border-red-900/30">
+                            <h3 class="text-xl font-bold mb-4 text-red-500">Dealers</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <svg class="w-5 h-5 text-red-500 mt-1 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    <div>
+                                        <p class="text-white">B-6, Gokulpuri</p>
+                                        <p class="text-gray-300">Delhi, India 110053</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 text-red-500 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                    </svg>
+                                    <p class="text-gray-300">+91 87002 76329</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Showroom 2 -->
+                        <div class="bg-gray-900 rounded-xl p-6 border border-red-900/30">
+                            <h3 class="text-xl font-bold mb-4 text-red-500">Chicago Showroom</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <svg class="w-5 h-5 text-red-500 mt-1 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    <div>
+                                        <p class="text-white">789 Magnificent Mile</p>
+                                        <p class="text-gray-300">Chicago, IL 60611</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 text-red-500 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                    </svg>
+                                    <p class="text-gray-300">+1 (555) 456-7890</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Placeholder -->
+           <div class="map-placeholder" >
+                                <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.704923671076!2d77.2667326753381!3d28.698472175628762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfdefd76d4121%3A0xc91993b4f60d4236!2sWaterlife!5e0!3m2!1sen!2sin!4v1762016016904!5m2!1sen!2sin" width="595" height="290" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+           </div>              
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Frequently Asked <span class="text-red-500">Questions</span></h2>
+            
+            <div class="space-y-4">
+                <div class="faq-item">
+                    <div class="faq-question py-4 flex justify-between items-center" onclick="toggleFAQ(0)">
+                        <h3 class="text-lg font-semibold">What is your warranty policy?</h3>
+                        <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pb-4">
+                        <p class="text-gray-300">We offer a comprehensive 5-year warranty on all our premium bathroom fittings, covering manufacturing defects and normal wear. Our warranty includes free replacement parts and professional installation support.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question py-4 flex justify-between items-center" onclick="toggleFAQ(1)">
+                        <h3 class="text-lg font-semibold">Do you provide installation services?</h3>
+                        <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pb-4">
+                        <p class="text-gray-300">Yes! We have a network of certified installers across all our service areas. Installation services can be scheduled during checkout or by contacting our customer service team. All installations come with a 2-year service guarantee.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question py-4 flex justify-between items-center" onclick="toggleFAQ(2)">
+                        <h3 class="text-lg font-semibold">How long does delivery take?</h3>
+                        <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pb-4">
+                        <p class="text-gray-300">Standard delivery takes 3-5 business days for in-stock items. Custom orders may take 2-3 weeks. We offer expedited shipping options and will provide tracking information once your order ships.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question py-4 flex justify-between items-center" onclick="toggleFAQ(3)">
+                        <h3 class="text-lg font-semibold">Can I return products if I'm not satisfied?</h3>
+                        <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pb-4">
+                        <p class="text-gray-300">We offer a 30-day return policy for unused products in original packaging. Custom or installed items may have different return conditions. Please contact our customer service team to initiate a return.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question py-4 flex justify-between items-center" onclick="toggleFAQ(4)">
+                        <h3 class="text-lg font-semibold">Do you offer bulk pricing for contractors?</h3>
+                        <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pb-4">
+                        <p class="text-gray-300">Yes, we have special pricing programs for contractors, builders, and designers. Contact our business development team to learn about volume discounts, trade accounts, and exclusive contractor benefits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media & Additional Contact -->
+    <section class="py-20 gradient-bg">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-8">Stay <span class="text-red-500">Connected</span></h2>
+            
+            
+            <div class="bg-gray-900 rounded-xl p-8 border border-red-900/30">
+                <h3 class="text-2xl font-bold mb-4">Need Immediate Assistance?</h3>
+                <p class="text-gray-300 mb-6">Our customer support team is available 24/7 for urgent inquiries.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href=" https://wa.me/message/GTCTXOOHS2XDD1"><button class="red-gradient px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                        Emergency Support
+                    </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-red-900/30 py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold text-red-500 mb-4">Waterlife</div>
+                    <p class="text-gray-400 mb-4">Premium bathroom solutions for modern homes. Quality, innovation, and style in every product.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Products</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="./products.html" class="hover:text-red-400 transition-colors">Faucets</a></li>
+                        <li><a href="./products.html" class="hover:text-red-400 transition-colors">Shower Systems</a></li>
+                        <li><a href="./products.html" class="hover:text-red-400 transition-colors">Accessories</a></li>
+                        <li><a href="./products.html" class="hover:text-red-400 transition-colors">Smart Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="./about.html" class="hover:text-red-400 transition-colors">About Us</a></li>
+                        <li><a href="./about.html" class="hover:text-red-400 transition-colors">Careers</a></li>
+                        <li><a href="./about.html" class="hover:text-red-400 transition-colors">Press</a></li>
+                        <li><a href="./about.html" class="hover:text-red-400 transition-colors">Partners</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-red-400 transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition-colors">Installation</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition-colors">Warranty</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Waterlife. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Form Validation and Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset previous errors
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.style.display = 'none';
+            });
+            
+            let isValid = true;
+            
+            // Validate required fields
+            const requiredFields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                const errorElement = document.getElementById(fieldId + '-error');
+                
+                if (!field.value.trim()) {
+                    errorElement.style.display = 'block';
+                    isValid = false;
+                }
+            });
+            
+            // Validate email format
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value && !emailRegex.test(email.value)) {
+                document.getElementById('email-error').textContent = 'Please enter a valid email address';
+                document.getElementById('email-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Show success message
+                document.getElementById('success-message').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('success-message').style.display = 'none';
+                }, 5000);
+                
+                // Scroll to success message
+                document.getElementById('success-message').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(index) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const currentItem = faqItems[index];
+            const answer = currentItem.querySelector('.faq-answer');
+            const icon = currentItem.querySelector('svg');
+            
+            // Close all other FAQs
+            faqItems.forEach((item, i) => {
+                if (i !== index) {
+                    item.querySelector('.faq-answer').classList.remove('active');
+                    item.querySelector('svg').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current FAQ
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            document.querySelectorAll('.fade-in, .scale-in, .contact-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = event.target.closest('button');
+            
+            if (mobileMenu && !mobileMenu.contains(event.target) && !menuButton) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-black');
+                nav.classList.remove('bg-black/90');
+            } else {
+                nav.classList.remove('bg-black');
+                nav.classList.add('bg-black/90');
+            }
+        });
+
+        // Form input animations
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+        
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e889cde2a4d8a9',t:'MTc2MDQ2MDIzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
